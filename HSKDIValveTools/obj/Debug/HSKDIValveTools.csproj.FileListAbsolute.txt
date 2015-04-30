@@ -1,0 +1,14 @@
+C:\Users\israelc\AppData\Local\Temporary Projects\AutoCAD CSharp plug-in1\bin\Debug\HSKDIValveTools.dll
+C:\Users\israelc\AppData\Local\Temporary Projects\AutoCAD CSharp plug-in1\bin\Debug\HSKDIValveTools.pdb
+C:\Users\israelc\AppData\Local\Temporary Projects\AutoCAD CSharp plug-in1\obj\Debug\HSKDIValveTools.csprojResolveAssemblyReference.cache
+C:\Users\israelc\AppData\Local\Temporary Projects\AutoCAD CSharp plug-in1\obj\Debug\HSKDIValveTools.MyCommands.resources
+C:\Users\israelc\AppData\Local\Temporary Projects\AutoCAD CSharp plug-in1\obj\Debug\HSKDIValveTools.csproj.GenerateResource.Cache
+C:\Users\israelc\AppData\Local\Temporary Projects\AutoCAD CSharp plug-in1\obj\Debug\HSKDIValveTools.dll
+C:\Users\israelc\AppData\Local\Temporary Projects\AutoCAD CSharp plug-in1\obj\Debug\HSKDIValveTools.pdb
+C:\Users\israelc\Dropbox\Programming Projects\HSKDIValveTools\HSKDIValveTools\bin\Debug\HSKDIValveTools.dll
+C:\Users\israelc\Dropbox\Programming Projects\HSKDIValveTools\HSKDIValveTools\bin\Debug\HSKDIValveTools.pdb
+C:\Users\israelc\Dropbox\Programming Projects\HSKDIValveTools\HSKDIValveTools\obj\Debug\HSKDIValveTools.csprojResolveAssemblyReference.cache
+C:\Users\israelc\Dropbox\Programming Projects\HSKDIValveTools\HSKDIValveTools\obj\Debug\HSKDIValveTools.MyCommands.resources
+C:\Users\israelc\Dropbox\Programming Projects\HSKDIValveTools\HSKDIValveTools\obj\Debug\HSKDIValveTools.csproj.GenerateResource.Cache
+C:\Users\israelc\Dropbox\Programming Projects\HSKDIValveTools\HSKDIValveTools\obj\Debug\HSKDIValveTools.dll
+C:\Users\israelc\Dropbox\Programming Projects\HSKDIValveTools\HSKDIValveTools\obj\Debug\HSKDIValveTools.pdb

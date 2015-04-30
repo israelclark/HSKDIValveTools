@@ -1,0 +1,7 @@
+C:\Users\israelc\Dropbox\Programming Projects\HSKDIValveTools\HSKDIValveTools\bin\Release\HSKDIValveTools.dll
+C:\Users\israelc\Dropbox\Programming Projects\HSKDIValveTools\HSKDIValveTools\bin\Release\HSKDIValveTools.pdb
+C:\Users\israelc\Dropbox\Programming Projects\HSKDIValveTools\HSKDIValveTools\obj\Release\HSKDIValveTools.csprojResolveAssemblyReference.cache
+C:\Users\israelc\Dropbox\Programming Projects\HSKDIValveTools\HSKDIValveTools\obj\Release\HSKDIValveTools.MyCommands.resources
+C:\Users\israelc\Dropbox\Programming Projects\HSKDIValveTools\HSKDIValveTools\obj\Release\HSKDIValveTools.csproj.GenerateResource.Cache
+C:\Users\israelc\Dropbox\Programming Projects\HSKDIValveTools\HSKDIValveTools\obj\Release\HSKDIValveTools.dll
+C:\Users\israelc\Dropbox\Programming Projects\HSKDIValveTools\HSKDIValveTools\obj\Release\HSKDIValveTools.pdb
