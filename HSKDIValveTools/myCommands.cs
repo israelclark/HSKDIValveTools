@@ -191,7 +191,7 @@ namespace HSKDIValveTools
 
                                                 if (attdef.Tag.ToUpper() == targetAttrib.tag && !objIds.Contains(designatorId)) // check your existing tag
                                                 {
-                                                    objIds.Add(ml.BlockId);
+                                                    objIds.Add(ml.ObjectId);
                                                     AttributeReference attRef = ml.GetBlockAttribute(attdef.ObjectId);
                                                     attRef = ml.GetBlockAttribute(attdef.ObjectId);
                                                     if (!attRef.IsWriteEnabled) attRef.UpgradeOpen();
