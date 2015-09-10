@@ -178,9 +178,10 @@ namespace HSKDIValveTools
                                     MLeader ml = obj as MLeader;
                                     if (ml != null)
                                     {
-                                        ObjectId designatorId = ml.BlockContentId;                                        
+                                        ObjectId designatorBlockId = ml.BlockContentId;
+                                        ObjectId designatorMultileaderId = ml.Id;
                                         HSKDICommon.ListPair targetAttrib = new HSKDICommon.ListPair("ZONE", "");
-                                        BlockTableRecord mbtr = (BlockTableRecord)tr.GetObject(designatorId, OpenMode.ForRead);
+                                        BlockTableRecord mbtr = (BlockTableRecord)tr.GetObject(designatorBlockId, OpenMode.ForRead);
                                         foreach (ObjectId atid in mbtr)
                                         {
                                             obj = tr.GetObject(atid, OpenMode.ForRead, false) as DBObject;
@@ -189,9 +190,9 @@ namespace HSKDIValveTools
                                             {
                                                 AttributeDefinition attdef = (AttributeDefinition)obj as AttributeDefinition;
 
-                                                if (attdef.Tag.ToUpper() == targetAttrib.tag && !objIds.Contains(designatorId)) // check your existing tag
+                                                if (attdef.Tag.ToUpper() == targetAttrib.tag && !objIds.Contains(designatorMultileaderId)) // check your existing tag
                                                 {
-                                                    objIds.Add(ml.ObjectId);
+                                                    objIds.Add(designatorMultileaderId);
                                                     AttributeReference attRef = ml.GetBlockAttribute(attdef.ObjectId);
                                                     attRef = ml.GetBlockAttribute(attdef.ObjectId);
                                                     if (!attRef.IsWriteEnabled) attRef.UpgradeOpen();
