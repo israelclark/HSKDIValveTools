@@ -32,7 +32,7 @@ namespace HSKDIValveTools
             Document doc = acadApp.DocumentManager.MdiActiveDocument;
             Database db = doc.Database;
             Editor ed = doc.Editor;
-            DBObject obj;            
+            DBObject obj;
             ObjectIdCollection objIds = new ObjectIdCollection();
             string controllerLetter = "";
             int prevControllerNumber = 0;
@@ -42,7 +42,7 @@ namespace HSKDIValveTools
             peo.SetRejectMessage("\nObject must be a Block.");
             peo.AddAllowedClass(typeof(BlockReference), false);
             peo.AddAllowedClass(typeof(MLeader), false);
-            peo.AllowObjectOnLockedLayer = true;            
+            peo.AllowObjectOnLockedLayer = true;
 
             PromptEntityResult res = ed.GetEntity(peo);
             if (res.Status == PromptStatus.OK)
@@ -56,7 +56,7 @@ namespace HSKDIValveTools
                     {
                         MLeader ml = (MLeader)obj;
                         if (ml != null)
-                        {
+                        {                          
                             ObjectId designatorId = ml.BlockContentId;
                             BlockTableRecord btr = (BlockTableRecord)tr.GetObject(designatorId, OpenMode.ForRead);
                             foreach (ObjectId atid in btr)
@@ -102,7 +102,7 @@ namespace HSKDIValveTools
                             BlockTableRecord btr = (BlockTableRecord)tr.GetObject(br.DynamicBlockTableRecord, OpenMode.ForRead);
                             blockName = btr.Name;
                         }
-                                               
+
                         if (br != null)
                         {
                             if (blockName.ToUpper().Contains("CONTROLLER"))
@@ -120,29 +120,29 @@ namespace HSKDIValveTools
                                 }
                             }
                             else if (blockName.ToUpper().Contains("ZONE"))
-                            {                               
+                            {
                                 foreach (ObjectId atId in br.AttributeCollection)
                                 {
                                     obj = tr.GetObject(atId, OpenMode.ForRead);
                                     AttributeReference ar = obj as AttributeReference;
-                                    
-                                            string tempstring = "";
-                                            string tempdouble = "";
-                                           
 
-                                            if (ar.Tag.ToUpper() == "ZONE")
-                                            {
-                                                foreach (char c in ar.TextString)
-                                                {
-                                                    tempdouble += HSKDICommon.Commands.SetNumber(c.ToString()) != -1 ? c.ToString() : "";
-                                                    if (tempdouble == "") tempstring += c.ToString();
-                                                }
-                                                controllerLetter = tempstring;
-                                                prevControllerNumber = (int)HSKDICommon.Commands.SetNumber(tempdouble);
-                                            }
-                                        
+                                    string tempstring = "";
+                                    string tempdouble = "";
+
+
+                                    if (ar.Tag.ToUpper() == "ZONE")
+                                    {
+                                        foreach (char c in ar.TextString)
+                                        {
+                                            tempdouble += HSKDICommon.Commands.SetNumber(c.ToString()) != -1 ? c.ToString() : "";
+                                            if (tempdouble == "") tempstring += c.ToString();
+                                        }
+                                        controllerLetter = tempstring;
+                                        prevControllerNumber = (int)HSKDICommon.Commands.SetNumber(tempdouble);
+                                    }
+
                                 }
-                                
+
                             }
                         }
                     }
@@ -230,13 +230,224 @@ namespace HSKDIValveTools
                                         }
                                     }
                                 }
-                            }                            
+                            }
                         }
                         tr.Commit();
                     }
                 }
             }
         }
+
+        //static public void NumberValves()
+        //{
+        //    Document doc = acadApp.DocumentManager.MdiActiveDocument;
+        //    Database db = doc.Database;
+        //    Editor ed = doc.Editor;
+        //    DBObject obj;            
+        //    ObjectIdCollection objIds = new ObjectIdCollection();
+        //    string controllerLetter = "";
+        //    int prevControllerNumber = 0;
+
+        //    // Ask the user to select Controller
+        //    PromptEntityOptions peo = new PromptEntityOptions("\nSelect Controller Block or to Resume Previous, Select Designator to Resume From: ");
+        //    peo.SetRejectMessage("\nObject must be a Block.");
+        //    peo.AddAllowedClass(typeof(BlockReference), false);
+        //    peo.AddAllowedClass(typeof(MLeader), false);
+        //    peo.AllowObjectOnLockedLayer = true;            
+
+        //    PromptEntityResult res = ed.GetEntity(peo);
+        //    if (res.Status == PromptStatus.OK)
+        //    {
+        //        Transaction tr = doc.TransactionManager.StartTransaction();
+        //        using (tr)
+        //        {
+        //            //Get the Controller letter &| previous controller number
+        //            obj = tr.GetObject(res.ObjectId, OpenMode.ForRead);
+        //            if (obj.GetType().ToString() == "Autodesk.AutoCAD.DatabaseServices.MLeader")
+        //            {
+        //                MLeader ml = (MLeader)obj;
+        //                if (ml != null)
+        //                {
+        //                    ObjectId designatorId = ml.BlockContentId;
+        //                    BlockTableRecord btr = (BlockTableRecord)tr.GetObject(designatorId, OpenMode.ForRead);
+        //                    foreach (ObjectId atid in btr)
+        //                    {
+        //                        obj = tr.GetObject(atid, OpenMode.ForRead, false) as DBObject;
+
+        //                        if (atid.ObjectClass.IsDerivedFrom(RXClass.GetClass(typeof(AttributeDefinition))))
+        //                        {
+        //                            AttributeDefinition attdef = (AttributeDefinition)obj as AttributeDefinition;
+
+        //                            if (attdef.Tag.ToUpper() == "ZONE")
+        //                            {
+        //                                string tempstring = "";
+        //                                string tempdouble = "";
+        //                                AttributeReference ar = ml.GetBlockAttribute(attdef.ObjectId);
+
+        //                                if (ar.Tag != null)
+        //                                {
+        //                                    foreach (char c in ar.TextString)
+        //                                    {
+        //                                        tempdouble += HSKDICommon.Commands.SetNumber(c.ToString()) != -1 ? c.ToString() : "";
+        //                                        if (tempdouble == "") tempstring += c.ToString();
+        //                                    }
+        //                                    controllerLetter = tempstring;
+        //                                    prevControllerNumber = (int)HSKDICommon.Commands.SetNumber(tempdouble);
+        //                                }
+        //                            }
+        //                        }
+        //                    }
+        //                    if ((prevControllerNumber == 0) || (controllerLetter == ""))
+        //                    {
+        //                        //was not a previously numbered designator
+        //                    }
+        //                }
+        //            }
+
+        //            if (obj.GetType().ToString() == "Autodesk.AutoCAD.DatabaseServices.BlockReference")
+        //            {
+        //                BlockReference br = obj as BlockReference;
+        //                string blockName = br.Name;
+        //                if (br.IsDynamicBlock)
+        //                {
+        //                    BlockTableRecord btr = (BlockTableRecord)tr.GetObject(br.DynamicBlockTableRecord, OpenMode.ForRead);
+        //                    blockName = btr.Name;
+        //                }
+                                               
+        //                if (br != null)
+        //                {
+        //                    if (blockName.ToUpper().Contains("CONTROLLER"))
+        //                    {
+        //                        foreach (ObjectId atId in br.AttributeCollection)
+        //                        {
+        //                            obj = tr.GetObject(atId, OpenMode.ForRead);
+        //                            AttributeReference ar = obj as AttributeReference;
+
+        //                            if (ar.Tag != null)
+        //                            {
+        //                                if (ar.Tag.ToUpper() == "CONTROLLER LETTER") controllerLetter = ar.TextString;
+        //                            }
+
+        //                        }
+        //                    }
+        //                    else if (blockName.ToUpper().Contains("ZONE"))
+        //                    {                               
+        //                        foreach (ObjectId atId in br.AttributeCollection)
+        //                        {
+        //                            obj = tr.GetObject(atId, OpenMode.ForRead);
+        //                            AttributeReference ar = obj as AttributeReference;
+                                    
+        //                                    string tempstring = "";
+        //                                    string tempdouble = "";
+                                           
+
+        //                                    if (ar.Tag.ToUpper() == "ZONE")
+        //                                    {
+        //                                        foreach (char c in ar.TextString)
+        //                                        {
+        //                                            tempdouble += HSKDICommon.Commands.SetNumber(c.ToString()) != -1 ? c.ToString() : "";
+        //                                            if (tempdouble == "") tempstring += c.ToString();
+        //                                        }
+        //                                        controllerLetter = tempstring;
+        //                                        prevControllerNumber = (int)HSKDICommon.Commands.SetNumber(tempdouble);
+        //                                    }
+                                        
+        //                        }
+                                
+        //                    }
+        //                }
+        //            }
+        //            else
+        //            {
+        //                //Not a controller block                        
+        //            }
+        //            tr.Commit();
+        //        }
+
+        //        ed.WriteMessage("\n");
+        //        while (res.Status == PromptStatus.OK)
+        //        {
+        //            //Number the zones
+        //            tr = doc.TransactionManager.StartTransaction();
+        //            using (tr)
+        //            {
+        //                // Ask the user to select valve designator &| valve            
+        //                peo.Message = "\nSelect Designators in order: ";
+        //                peo.SetRejectMessage("\nObject must be a Block or Multileader.");
+        //                peo.AddAllowedClass(typeof(BlockReference), false);
+        //                peo.AddAllowedClass(typeof(MLeader), false);
+        //                peo.AllowObjectOnLockedLayer = true;
+
+        //                res = ed.GetEntity(peo);
+        //                if (res.Status == PromptStatus.OK)
+        //                {
+        //                    if (res.ObjectId != null)
+        //                    {
+        //                        obj = tr.GetObject(res.ObjectId, OpenMode.ForRead);
+        //                        if (obj.GetType().ToString() == "Autodesk.AutoCAD.DatabaseServices.MLeader")
+        //                        {
+        //                            MLeader ml = obj as MLeader;
+        //                            if (ml != null)
+        //                            {
+        //                                ObjectId designatorBlockId = ml.BlockContentId;
+        //                                ObjectId designatorMultileaderId = ml.Id;
+        //                                HSKDICommon.ListPair targetAttrib = new HSKDICommon.ListPair("ZONE", "");
+        //                                BlockTableRecord mbtr = (BlockTableRecord)tr.GetObject(designatorBlockId, OpenMode.ForRead);
+        //                                foreach (ObjectId atid in mbtr)
+        //                                {
+        //                                    obj = tr.GetObject(atid, OpenMode.ForRead, false) as DBObject;
+
+        //                                    if (atid.ObjectClass.IsDerivedFrom(RXClass.GetClass(typeof(AttributeDefinition))))
+        //                                    {
+        //                                        AttributeDefinition attdef = (AttributeDefinition)obj as AttributeDefinition;
+
+        //                                        if (attdef.Tag.ToUpper() == targetAttrib.tag && !objIds.Contains(designatorMultileaderId)) // check your existing tag
+        //                                        {
+        //                                            objIds.Add(designatorMultileaderId);
+        //                                            AttributeReference attRef = ml.GetBlockAttribute(attdef.ObjectId);
+        //                                            attRef = ml.GetBlockAttribute(attdef.ObjectId);
+        //                                            if (!attRef.IsWriteEnabled) attRef.UpgradeOpen();
+        //                                            attRef.TextString = controllerLetter + (prevControllerNumber + objIds.Count).ToString();
+        //                                            if (!ml.IsWriteEnabled) ml.UpgradeOpen();
+        //                                            ml.SetBlockAttribute(attdef.ObjectId, attRef);
+        //                                            ed.WriteMessage("\nTotal Designators selected: {0}.", objIds.Count);
+        //                                        }
+        //                                    }
+        //                                }
+        //                            }
+        //                        }
+        //                        if (obj.GetType().ToString() == "Autodesk.AutoCAD.DatabaseServices.BlockReference")
+        //                        {
+        //                            BlockReference br = obj as BlockReference;
+        //                            if (br != null)
+        //                            {
+        //                                foreach (ObjectId arId in br.AttributeCollection)
+        //                                {
+        //                                    obj = tr.GetObject(arId, OpenMode.ForRead);
+        //                                    AttributeReference ar = obj as AttributeReference;
+        //                                    BlockTableRecord btr = (BlockTableRecord)tr.GetObject(br.IsDynamicBlock ? br.DynamicBlockTableRecord : br.BlockTableRecord, OpenMode.ForRead);
+
+        //                                    if (ar.Tag != null)
+        //                                    {
+        //                                        if (ar.Tag.ToUpper() == "ZONE" && !objIds.Contains(br.ObjectId))
+        //                                        {
+        //                                            objIds.Add(br.ObjectId);
+        //                                            ar.UpgradeOpen();
+        //                                            ar.TextString = controllerLetter + (prevControllerNumber + objIds.Count).ToString();
+        //                                            ar.DowngradeOpen();
+        //                                            ed.WriteMessage("\nTotal Designators selected: {0}.", objIds.Count);
+        //                                        }
+        //                                    }
+        //                                }
+        //                            }
+        //                        }
+        //                    }                            
+        //                }
+        //                tr.Commit();
+        //            }
+        //        }
+        //    }
+        //}
 
 
         [CommandMethod("SizeValves", CommandFlags.UsePickSet | CommandFlags.Redraw | CommandFlags.Modal)]
@@ -374,9 +585,10 @@ namespace HSKDIValveTools
 
         private static void ValveSize(HSKDICommon.ListPair targetAttrib, double flow)
         {
-            if (flow <= 25) targetAttrib.textString = "1\'\'";
-            else if (flow <= 50) targetAttrib.textString = "1.5\'\'";
-            else if (flow <= 100) targetAttrib.textString = "2\'\'";            
+            Database acadDB = acadApp.DocumentManager.MdiActiveDocument.Database;
+            if (flow <= 25 * (acadDB.Measurement == MeasurementValue.Metric ? HSKDICommon.Commands.cLiterPerGallon : 1)) targetAttrib.textString = "1\'\'";
+            else if (flow <= 50 * (acadDB.Measurement == MeasurementValue.Metric ? HSKDICommon.Commands.cLiterPerGallon : 1)) targetAttrib.textString = "1.5\'\'";
+            else if (flow <= 100 * (acadDB.Measurement == MeasurementValue.Metric ? HSKDICommon.Commands.cLiterPerGallon : 1)) targetAttrib.textString = "2\'\'";            
         }
 
         public static double ReadAttribute(Transaction tr, List<HSKDICommon.ListPair> myAtts, string tag)
