@@ -108,7 +108,7 @@ namespace HSKDIValveTools
 
                                     if (ar.Tag != null)
                                     {
-                                        if (ar.Tag.ToUpper() == "CONTROLLER LETTER") controllerLetter = ar.TextString;
+                                        if (ar.Tag.ToUpper() == "CONTROLLERLETTER" || ar.Tag.ToUpper() == "CONTROLLER LETTER") controllerLetter = ar.TextString;
                                     }
 
                                 }

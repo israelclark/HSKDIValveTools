@@ -3,3 +3,4 @@ C:\Users\israelc\Dropbox\Programming Projects\HSKDIValveTools\HSKDIValveTools\bi
 C:\Users\israelc\Dropbox\Programming Projects\HSKDIValveTools\HSKDIValveTools\obj\Release\HSKDIValveTools.csprojResolveAssemblyReference.cache
 C:\Users\israelc\Dropbox\Programming Projects\HSKDIValveTools\HSKDIValveTools\obj\Release\HSKDIValveTools.dll
 C:\Users\israelc\Dropbox\Programming Projects\HSKDIValveTools\HSKDIValveTools\obj\Release\HSKDIValveTools.pdb
+C:\Users\israelc\Dropbox\Programming Projects\HSKDIValveTools\HSKDIValveTools\obj\Release\HSKDIValveTools.csproj.CoreCompileInputs.cache
